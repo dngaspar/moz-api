@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 
-from models import Data
+from utils.helper import download
+from utils.models import Data
 
 description = """
 API description
@@ -19,14 +20,20 @@ app = FastAPI(
 
 
 @app.get("/")
-def handle_get(id: int, name: str):
+def handle(id: int, name: str):
     return f"GET: {id} - {name}"
 
 
 @app.post("/")
 def handle_post(data: Data):
-
     id = data.id
     name = data.name
 
     return f"POST: {id} - {name}"
+
+
+@app.post("/fetch")
+def fetch():
+    df = download()
+    print(df)
+    return "success"
