@@ -6,7 +6,6 @@ description = """
 API description
 """
 
-
 app = FastAPI(
     title="Project Name",
     description=description,
